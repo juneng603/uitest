@@ -1,0 +1,40 @@
+group 'com.woowa.biz'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = "1.2.8.RELEASE"
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+bootRun {
+    addResources = true
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile "org.springframework.boot:spring-boot-devtools"
+    compile "ch.qos.logback:logback-classic"
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
